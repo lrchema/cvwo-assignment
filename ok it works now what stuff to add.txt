@@ -1,0 +1,12 @@
+ok it works now what stuff to add
+- search by field (status, category, priority), search by values 
+- change the nothing one to all cats, the (blank) to no category
+- sort by dates, ascending descending (radio button)
+- destroy is a strong word use remove
+- validations
+- status bar based on cursor position
+- reformat the date field to dd/mm/yyyy
+- styling
+- fonts and colours. colour categories or colour the table cell blue or in the drop down menu make the text colour match.
+- sort by 2 factors if possible
+- move priority to leftmost

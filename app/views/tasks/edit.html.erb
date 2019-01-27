@@ -1,0 +1,63 @@
+<h1>Edit Task</h1>
+
+<%= form_with(model: @task, local: true) do |form| %>
+
+<% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@task.errors.count, "error") %> prohibited
+        this task from being saved:
+      </h2>
+      <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+  <table>
+    <tr>
+      <td>
+        <%= form.label :start %>
+        <%= form.date_select :start %>
+      </td>
+      <td>
+        <%= form.label :due_date %>
+        <%= form.date_select :due_date %>
+      </td>
+      <td>
+        <%= form.label :end_date %>
+        <%= form.date_select :end_date %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= form.label :status %>
+        <%= form.collection_select(:status_id, Status.all, :id, :name) %>
+      </td>
+      <td>
+        <%= form.label :priority %>
+        <%= form.collection_select(:priority_id, Priority.all, :id, :name) %>
+      </td>
+      <td>
+        <%= form.label :category %>
+        <%= form.collection_select(:type_id, Type.all, :id, :name) %>
+      </td>
+    </tr>
+  </table>
+  
+  <p>
+    <%= form.submit "Update" ,:class => 'button'%>
+  </p>
+<% end %>
+<%= link_to 'Go Back to Tasks Listing', tasks_path %>

@@ -1,3 +1,37 @@
 // Place all the styles related to the Main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+tr.blank td{
+  background-color: #C3C3C3; color: black;
+}
+tr.red td{
+  background-color: #ff9595; color: black;
+}
+tr.blue td{
+  background-color: #a5d4ff; color: black;
+}
+tr.green td{
+  background-color: #a4ff95; color: black;
+}
+tr.purple td{
+  background-color: #ce95ff; color: black;
+}
+tr.orange td{
+  background-color: #ffc995; color: black;
+}
+.button {
+	background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

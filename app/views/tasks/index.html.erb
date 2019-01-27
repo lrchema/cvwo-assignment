@@ -1,27 +1,80 @@
-<h1>Listing Tasks</h1>
+<style type="text/css">
+
+</style>
+
+<h1 align = "center" style = "background-color: #d4e6ff; border: 3px; border-style: solid; border-color: #104894;">Listing Tasks</h1>
  
+<h4 align = "center" style = "background-color: #d4e6ff; border: 1px; border-style: solid; border-color: #104894;"><%= link_to 'Create a New Task', new_task_path %></h4>
+<br></br>
 <table>
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Start Date</th>
-    <th>Due Date</th>
-    <th>End Date</th>
-    <th>Status</th>
-    <th>Priority</th>
-    <th>Category</th>
+    <td align = "center" style = "width: 50%; background-color: #d4e6ff;">
+      <%= form_tag('/tasks',:method=>:get) do %> 
+sort by date                    
+<%= select_tag "date_sort", content_tag(:option,'none',:value=>"")+content_tag(:option,'start date',:value=>"start")+content_tag(:option,'end date',:value=>"end_date")+content_tag(:option,'due date',:value=>"due_date") %>
+<%= select_tag "up_down", content_tag(:option,'ascending',:value=>"asc")+content_tag(:option,'descending',:value=>"des") %>
+<%= submit_tag 'Sort' %>
+<% end %></td>
+<td align = "center" style = "width: 100%; background-color: #d4e6ff;">
+  <%= form_tag('/tasks',:method=>:get) do %> 
+search by task category 
+<%= select_tag "type_search", content_tag(:option,'all categories',:value=>"")+options_from_collection_for_select(Type.all, "id", "name") %>
+<%= submit_tag 'Search' %>
+<% end %>
+</td>
   </tr>
- 
+</table>
+
+<br></br>
+<table>
+  <tr>
+    <th style="width: 5%">Priority</th>
+    <th style="width: 10%">Title</th>
+    <th style="width: 40%">Description</th>
+    <th style="width: 5%">Start Date</th>
+    <th style="width: 5%">Due Date</th>
+    <th style="width: 5%">End Date</th>
+    <th style="width: 8%">Status</th>
+    <th style="width: 5%">Category</th>
+  </tr>
   <% @tasks.each do |task| %>
-    <tr>
+
+    <% if task.type.name == "(blank)"%>
+      <tr class = "blank">
+    <% elsif task.type.name == "red"%>
+      <tr class = "red">
+    <% elsif task.type.name == "blue"%>
+      <tr class = "blue">
+    <% elsif task.type.name == "green"%>
+      <tr class = "green">
+    <% elsif task.type.name == "purple"%>
+      <tr class = "purple">
+    <% elsif task.type.name == "orange"%>
+      <tr class = "orange">
+    <% else %>
+      <tr>
+    <% end%>
+      <td align="center"><%= task.priority.name %></td>
       <td><%= task.title %></td>
       <td><%= task.description %></td>
-      <td><%= task.start %></td>
-      <td><%= task.due_date %></td>
-      <td><%= task.end_date %></td>
-      <td><%= task.status %></td>
-      <td><%= task.priority %></td>
-      <td><%= task.type %></td>
+      <td><%= task.start.try(:strftime,'%d/%m/%Y') %></td>
+      <td align="center"><%= task.due_date.try(:strftime,'%d/%m/%Y') %></td>
+      <td align="center"><%if task.status.name == "Completed" && task.end_date.present?%>
+          <%= task.end_date.strftime('%d/%m/%Y') %>
+          <%else%>
+          -
+          <%end%>
+      </td>
+      <td align="center"><%= task.status.name %></td>
+      <td align="center"><%= task.type.name %></td>
+      <td align="center"><%= link_to 'Show', task_path(task) %></td>
+      <td align="center"><%= link_to 'Edit', edit_task_path(task) %></td>
+      <td align="center"><%= link_to 'Remove', task_path(task),
+              method: :delete,
+              data: { confirm: 'Are you sure you want to remove this task?' } %></td>
     </tr>
   <% end %>
 </table>
+<br>
+<%= link_to 'Back to Home', main_index_path %>
+

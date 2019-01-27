@@ -1,0 +1,46 @@
+<h1 align="center">Show Task Details</h1>
+
+<table align="center">
+	<tr>
+		<td><strong>Title:</strong></td>
+		<td><%= @task.title %></td>
+	</tr>
+	<tr>
+		<td><strong>Description:</strong></td>
+		<td><%= @task.description %></td>
+	</tr>
+	<tr>
+  		<td><strong>Start Date:</strong></td>
+  		<td><%= @task.start.strftime('%d/%m/%Y') %></td>
+	</tr>
+	<tr>
+		<td><strong>Due Date:</strong></td>
+  		<td><%= @task.due_date.strftime('%d/%m/%Y') %></td>
+	</tr>
+	<tr>
+		<td><strong>End Date:</strong></td>
+  		<td><%if @task.status.name == "Completed" && @task.end_date.present?%>
+          	<%= @task.end_date.strftime('%d/%m/%Y') %>
+          	<%else%>
+          	-
+          	<%end%>
+  		</td>
+	</tr>
+	<tr>
+		<td><strong>Status:</strong></td>
+  		<td><%= @task.status.name %></td>
+	</tr>
+	<tr>
+		<td><strong>Priority:</strong></td>
+  		<td><%= @task.priority.name %></td>
+	</tr>
+	<tr>
+		<td><strong>Category:</strong></td>
+  		<td><%= @task.type.name %></td>
+	</tr>
+</table>
+
+<br>
+<h4 align="center">
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %></h4>

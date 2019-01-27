@@ -1,9 +1,5 @@
 # README
 
-Chandrasekaran Hema
-A0180292H
-
-
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

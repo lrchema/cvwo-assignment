@@ -1,2 +1,4 @@
-<h1>Todo Manager</h1>
-<%= link_to 'View Tasks', controller: 'tasks' %>
+<h1 align = "center" style = "background-color: #d4e6ff; border: 3px; border-style: solid; border-color: #104894;">Todo Manager</h1><h4>Welcome, user! Today's date: <%= DateTime.now.strftime("%m/%d/%Y  %H:%M:%S") %></h4>
+<h4>This app is to help you manage your tasks efficiently and keep track of your daily activities so that nothing is missed out and you perform with increased efficiency.</h4> <h4>Please press view tasks to see your current status of tasks.</h4>
+<h2 align = "center" style = "background-color: #d4e6ff; border: 1px; border-style: solid; border-color: #104894;"><%= link_to 'View Tasks', controller: 'tasks' %></h4>
+<h4 align = "center"><%=image_tag("startPage.jpg",size:"800x550", alt: "todo list")%></h4>
